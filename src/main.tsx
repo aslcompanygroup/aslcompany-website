@@ -51,7 +51,7 @@ function App(){
  const [lang,setLang]=useState<'pt'|'en'>('pt'),[menu,setMenu]=useState(false);
  const t=content[lang];const ids=['services','expertise','experience','contact'];
  return <div>
-  <header className="header"><a className="brand" href="#home" aria-label="ASLCOMPANY home"><img src={`${import.meta.env.BASE_URL}asl-logo.png`} alt="ASLCOMPANY logo"/><span>ASLCOMPANY <small>GROUP</small></span></a>
+  <header className="header"><a className="brand" href="#home" aria-label="ASLCOMPANY home"><img src={`${import.meta.env.BASE_URL}asl-logo.png`} alt="ASLCOMPANY logo"/> </a>
    <button className="hamburger" onClick={()=>setMenu(!menu)} aria-label="Toggle navigation" aria-expanded={menu}>☰</button>
    <nav className={menu?'open':''}>{t.nav.map((x,i)=><a key={x} href={'#'+ids[i]} onClick={()=>setMenu(false)}>{x}</a>)}<button className="lang" onClick={()=>{setLang(lang==='pt'?'en':'pt');setMenu(false)}}>{lang==='pt'?'EN':'PT'} ↗</button></nav>
   </header>
