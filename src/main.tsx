@@ -1,9 +1,282 @@
-import React,{useState} from 'react';
-import {createRoot} from 'react-dom/client';
-import './style.css';
-const BASE=import.meta.env.BASE_URL;
-const data={
-en:{nav:['Home','Services','Expertise','Experience','Contact'],tag:'TECHNOLOGY FOR A BETTER FUTURE',title:<>Transforming<br/>Businesses<br/><em>Through Technology</em></>,intro:'We deliver innovative technology solutions to help businesses grow, operate more efficiently, and build a better future.',services:'Comprehensive Technology Solutions',serviceSub:'From cloud infrastructure to custom software, we help organizations leverage technology to improve efficiency, security, and innovation.',about:'Your Technology Partner for a Better Future',aboutText:'ASLCOMPANY Group is a technology consulting company focused on delivering innovative solutions that help businesses grow and succeed. We combine global expertise with a personal approach, serving clients in the United States, Brazil, and beyond.',why:'WHY CHOOSE US',contact:'Let’s Build a Better Future Together',contactSub:'Tell us about your project or inquiry, and our team will get back to you as soon as possible.',send:'Send Message',name:'Full Name',email:'Email Address',service:'Service of Interest',message:'Message',cards:[['Cloud Infrastructure','Design, implement, and manage secure, scalable cloud solutions on AWS, Azure and Google Cloud.'],['Microsoft 365 Services','Implement and optimize Microsoft 365, SharePoint, and modern workplace solutions.'],['Power Platform & Automation','Build custom solutions with Power Apps, Power Automate, and Power BI to streamline processes.'],['Artificial Intelligence','Unlock the potential of AI to drive innovation and smarter decisions.'],['Software Development','Custom software solutions designed for your business needs.'],['Intranets & SharePoint Solutions','Modern intranets that connect people, processes, and information.'],['IT Consulting & Support','Keep your business secure, efficient, and future-ready.'],['Digital Transformation','Strategic guidance to modernize operations and accelerate growth.']]},
-pt:{nav:['Início','Serviços','Especialidades','Experiência','Contato'],tag:'TECNOLOGIA PARA UM FUTURO MELHOR',title:<>Transformando<br/>Negócios<br/><em>Com Tecnologia</em></>,intro:'Oferecemos soluções tecnológicas inovadoras para ajudar empresas a crescer, operar com eficiência e construir um futuro melhor.',services:'Soluções Tecnológicas Completas',serviceSub:'Da infraestrutura em nuvem ao software personalizado, ajudamos empresas a inovar com segurança e eficiência.',about:'Seu Parceiro de Tecnologia para um Futuro Melhor',aboutText:'A ASLCOMPANY Group é uma consultoria de tecnologia focada em soluções inovadoras. Combinamos experiência global e atendimento personalizado para clientes no Brasil, nos Estados Unidos e além.',why:'POR QUE NOS ESCOLHER',contact:'Vamos Construir um Futuro Melhor Juntos',contactSub:'Conte sobre seu projeto e nossa equipe entrará em contato.',send:'Enviar Mensagem',name:'Nome Completo',email:'E-mail',service:'Serviço de Interesse',message:'Mensagem',cards:[['Infraestrutura em Nuvem','Soluções seguras e escaláveis em AWS, Azure e Google Cloud.'],['Serviços Microsoft 365','Microsoft 365, SharePoint e ambientes modernos de trabalho.'],['Power Platform e Automação','Power Apps, Power Automate e Power BI para otimizar processos.'],['Inteligência Artificial','IA para inovação e decisões mais inteligentes.'],['Desenvolvimento de Software','Soluções de software sob medida para sua empresa.'],['Intranets e SharePoint','Intranets que conectam pessoas, processos e informações.'],['Consultoria e Suporte de TI','Segurança, eficiência e preparação para o futuro.'],['Transformação Digital','Estratégias para modernizar operações e acelerar o crescimento.']]}}
-function App(){const[lang,setLang]=useState<'en'|'pt'>('en');const[open,setOpen]=useState(false);const t=data[lang];const navIds=['home','services','expertise','experience','contact'];return <><header className="site-header"><div className="header-inner"><a className="brand" href="#home"><img src={BASE+'mockup-logo.png'} alt="ASLCOMPANY Group"/></a><button className="mobile-menu" onClick={()=>setOpen(!open)} aria-label="Toggle menu">☰</button><nav className={open?'open':''}>{navIds.map((id,i)=><a href={'#'+id} onClick={()=>setOpen(false)} key={id}>{t.nav[i]}</a>)}</nav><div className="language"><button className={lang==='en'?'selected':''} onClick={()=>setLang('en')}>EN</button><button className={lang==='pt'?'selected':''} onClick={()=>setLang('pt')}>PT</button></div><a className="primary header-cta" href="#contact">Let's Talk →</a></div></header><main><section className="hero" id="home"><div className="hero-overlay"><div className="hero-inner"><span className="eyebrow">{t.tag}</span><h1>{t.title}</h1><p>{t.intro}</p><div className="buttons"><a href="#services" className="primary">Our Services →</a><a href="#contact" className="outline">Get in Touch</a></div><div className="hero-features"><span>▥ &nbsp; Strategic<br/>Solutions</span><span>♧ &nbsp; Global<br/>Expertise</span><span>⬡ &nbsp; Trusted<br/>Partnership</span></div></div></div></section><section className="services" id="services"><div className="section-heading"><span className="eyebrow">OUR SERVICES</span><h2>{t.services}</h2><p>{t.serviceSub}</p></div><div className="service-grid">{t.cards.map(([title,description],i)=><article className="service-card" key={i}><div className="service-photo" style={{backgroundImage:`url("${BASE}service-${i+1}.jpg")`}}/><div className="service-body"><h3>{title}</h3><p>{description}</p><a href="#contact" aria-label={'Contact about '+title}>→</a></div></article>)}</div></section><section className="about-row" id="expertise"><div className="about-copy"><span className="eyebrow">ABOUT ASLCOMPANY GROUP</span><h2>{t.about}</h2><p>{t.aboutText}</p><a className="primary" href="#experience">Learn More →</a></div><div className="building-image"/><div className="why"><span className="eyebrow">{t.why}</span>{[['◎','Global Perspective','International experience with local understanding'],['♧','Client-Focused Approach','Solutions tailored to your business needs'],['⚙','Innovation Driven','Leveraging the latest technologies'],['⬡','Long-Term Partnerships','Committed to your continued success']].map(([icon,title,desc])=><div className="why-item" key={title}><b>{icon}</b><div><strong>{title}</strong><p>{desc}</p></div></div>)}</div></section><section className="experience-note" id="experience"><strong>Professional Experience</strong><p>Our founder contributed to a Volkswagen Truck & Bus Brazil SharePoint and Microsoft 365 intranet in a previous professional role. This was not a direct ASLCOMPANY Group client engagement.</p></section><section className="contact-row" id="contact"><div className="contact-form"><span className="eyebrow">CONTACT US</span><h2>{t.contact}</h2><p>{t.contactSub}</p><form action="https://formsubmit.co/admin@aslcompanygroup.com" method="POST"><input type="hidden" name="_subject" value="ASLCOMPANY Group website inquiry"/><input type="text" name="_honey" style={{display:'none'}} tabIndex={-1}/><div className="form-grid"><label>{t.name} *<input name="name" placeholder="Your name" required/></label><label>{t.email} *<input name="email" type="email" placeholder="yourname@company.com" required/></label><label>{t.service} *<select name="service" required><option value="">Select a service</option>{t.cards.map(([title])=><option key={title}>{title}</option>)}</select></label><label>{t.message} *<textarea name="message" placeholder="Tell us about your project or inquiry..." required/></label></div><button className="primary" type="submit">{t.send} →</button></form></div><div className="contact-image"><div className="contact-info"><p>📍 &nbsp; São Paulo, Brazil<br/> &nbsp;&nbsp;&nbsp;&nbsp; Serving the United States,<br/> &nbsp;&nbsp;&nbsp;&nbsp; Brazil and beyond</p><p>◎ &nbsp; www.aslcompanygroup.com</p></div></div></section></main><footer><img src={BASE+'mockup-logo.png'} alt="ASLCOMPANY Group"/><small>© 2026 ASLCOMPANY Group. All rights reserved.</small><div><a href="#home">Home</a><a href="#services">Services</a><a href="#expertise">Expertise</a><a href="#experience">Experience</a><a href="#contact">Contact</a></div></footer></>}
-createRoot(document.getElementById('root')!).render(<React.StrictMode><App/></React.StrictMode>);
+import { useState } from 'react';
+import {
+  ArrowRight, Users, ShieldCheck, Globe, Target, Cpu, Handshake,
+  MapPin, Mail, Linkedin, Youtube,
+} from 'lucide-react';
+
+type Lang = 'en' | 'pt';
+
+const t = {
+  en: {
+    nav: ['Home', 'Services', 'Expertise', 'Experience', 'Contact'],
+    talk: 'Let’s Talk',
+    eyebrow: 'Technology for a Better Future',
+    heroTitle: 'Transforming Businesses',
+    heroAccent: 'Through Technology',
+    heroText:
+      'We deliver innovative technology solutions to help businesses grow, operate more efficiently, and build a better future.',
+    ourServices: 'Our Services',
+    getInTouch: 'Get in Touch',
+    trust: ['Strategic Solutions', 'Global Expertise', 'Trusted Partnership'],
+    servicesEyebrow: 'Our Services',
+    servicesTitle: 'Comprehensive Technology Solutions',
+    servicesText:
+      'From cloud infrastructure to custom software, we help organizations leverage technology to improve efficiency, security, and innovation.',
+    services: [
+      { title: 'Cloud Infrastructure', desc: 'Design, implement, and manage secure, scalable cloud solutions on AWS, Azure and Google Cloud.' },
+      { title: 'Microsoft 365 Services', desc: 'Implement and optimize Microsoft 365, SharePoint, and modern workplace solutions.' },
+      { title: 'Power Platform & Automation', desc: 'Build custom solutions with Power Apps, Power Automate, and Power BI to streamline processes.' },
+      { title: 'Artificial Intelligence', desc: 'Unlock the potential of AI to drive innovation and smarter decisions.' },
+      { title: 'Software Development', desc: 'Custom software solutions designed for your business needs.' },
+      { title: 'Intranets & SharePoint Solutions', desc: 'Modern intranets that connect people, processes, and information.' },
+      { title: 'IT Consulting & Support', desc: 'Keep your business secure, efficient, and future-ready.' },
+      { title: 'Digital Transformation', desc: 'Strategic guidance to modernize operations and accelerate growth.' },
+    ],
+    aboutEyebrow: 'About ASLCOMPANY Group',
+    aboutTitle: 'Your Technology Partner for a Better Future',
+    aboutText:
+      'ASLCOMPANY Group is a technology consulting company focused on delivering innovative solutions that help businesses grow and succeed. We combine global expertise with a personal approach, serving clients in the United States, Brazil, and beyond.',
+    learnMore: 'Learn More',
+    whyEyebrow: 'Why Choose Us',
+    why: [
+      { title: 'Global Perspective', desc: 'International experience with local understanding.' },
+      { title: 'Client-Focused Approach', desc: 'Solutions tailored to your business needs.' },
+      { title: 'Innovation Driven', desc: 'Leveraging the latest technologies.' },
+      { title: 'Long-Term Partnerships', desc: 'Committed to your continued success.' },
+    ],
+    contactEyebrow: 'Contact Us',
+    contactTitle: "Let's Build a Better Future Together",
+    contactText: 'Tell us about your project or inquiry, and our team will get back to you as soon as possible.',
+    fullName: 'Full Name *',
+    email: 'Email Address *',
+    interest: 'Service of Interest *',
+    message: 'Message *',
+    selectService: 'Select a service',
+    send: 'Send Message',
+    location: 'São Paulo, Brazil',
+    serving: 'Serving the United States, Brazil, and beyond',
+  },
+  pt: {
+    nav: ['Início', 'Serviços', 'Especialidades', 'Experiência', 'Contato'],
+    talk: 'Vamos Conversar',
+    eyebrow: 'Tecnologia para um Futuro Melhor',
+    heroTitle: 'Transformando Empresas',
+    heroAccent: 'Através da Tecnologia',
+    heroText:
+      'Entregamos soluções tecnológicas inovadoras para ajudar empresas a crescer, operar com mais eficiência e construir um futuro melhor.',
+    ourServices: 'Nossos Serviços',
+    getInTouch: 'Fale Conosco',
+    trust: ['Soluções Estratégicas', 'Experiência Global', 'Parceria Confiável'],
+    servicesEyebrow: 'Nossos Serviços',
+    servicesTitle: 'Soluções Tecnológicas Abrangentes',
+    servicesText:
+      'Da infraestrutura em nuvem ao software personalizado, ajudamos organizações a usar tecnologia para melhorar eficiência, segurança e inovação.',
+    services: [
+      { title: 'Infraestrutura em Nuvem', desc: 'Projetamos, implementamos e gerenciamos soluções seguras e escaláveis na AWS, Azure e Google Cloud.' },
+      { title: 'Serviços Microsoft 365', desc: 'Implementação e otimização do Microsoft 365, SharePoint e soluções de trabalho moderno.' },
+      { title: 'Power Platform e Automação', desc: 'Soluções com Power Apps, Power Automate e Power BI para otimizar processos.' },
+      { title: 'Inteligência Artificial', desc: 'Desbloqueie o potencial da IA para impulsionar inovação e decisões inteligentes.' },
+      { title: 'Desenvolvimento de Software', desc: 'Soluções de software personalizadas para as necessidades do seu negócio.' },
+      { title: 'Intranets e SharePoint', desc: 'Intranets modernas que conectam pessoas, processos e informações.' },
+      { title: 'Consultoria e Suporte de TI', desc: 'Mantenha sua empresa segura, eficiente e pronta para o futuro.' },
+      { title: 'Transformação Digital', desc: 'Orientação estratégica para modernizar operações e acelerar o crescimento.' },
+    ],
+    aboutEyebrow: 'Sobre a ASLCOMPANY Group',
+    aboutTitle: 'Seu Parceiro de Tecnologia para um Futuro Melhor',
+    aboutText:
+      'A ASLCOMPANY Group é uma consultoria de tecnologia focada em entregar soluções inovadoras que ajudam empresas a crescer e ter sucesso. Combinamos experiência global com uma abordagem pessoal, atendendo clientes nos Estados Unidos, Brasil e além.',
+    learnMore: 'Saiba Mais',
+    whyEyebrow: 'Por Que Nos Escolher',
+    why: [
+      { title: 'Perspectiva Global', desc: 'Experiência internacional com entendimento local.' },
+      { title: 'Foco no Cliente', desc: 'Soluções adaptadas ao seu negócio.' },
+      { title: 'Inovação', desc: 'Utilizando as tecnologias mais recentes.' },
+      { title: 'Parcerias de Longo Prazo', desc: 'Comprometidos com o seu sucesso contínuo.' },
+    ],
+    contactEyebrow: 'Contato',
+    contactTitle: 'Vamos Construir um Futuro Melhor Juntos',
+    contactText: 'Conte-nos sobre seu projeto ou dúvida e nossa equipe retornará o mais breve possível.',
+    fullName: 'Nome Completo *',
+    email: 'E-mail *',
+    interest: 'Serviço de Interesse *',
+    message: 'Mensagem *',
+    selectService: 'Selecione um serviço',
+    send: 'Enviar Mensagem',
+    location: 'São Paulo, Brasil',
+    serving: 'Atendendo Estados Unidos, Brasil e além',
+  },
+};
+
+const whyIcons = [Globe, Users, Cpu, Handshake];
+
+const serviceImages = [
+  'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=1200&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1633419461186-7d40a38105ec?q=80&w=1200&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1200&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=1200&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?q=80&w=1200&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1200&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=1200&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=1200&auto=format&fit=crop',
+];
+
+export default function App() {
+  const [lang, setLang] = useState<Lang>('en');
+  const c = t[lang];
+
+  return (
+    <>
+      {/* HEADER */}
+      <header className="site-header">
+        <div className="container header-inner">
+          <a href="#" className="logo">
+            <img src="/asl-logo.png" alt="ASLCOMPANY Group" />
+            <span>ASLCOMPANY<br /><small style={{ fontSize: '0.65rem', letterSpacing: '3px', opacity: 0.7 }}>GROUP</small></span>
+          </a>
+          <nav className="nav-links">
+            {c.nav.map((n, i) => <a key={n} href={['#', '#services', '#about', '#about', '#contact'][i]}>{n}</a>)}
+          </nav>
+          <div className="header-actions">
+            <div className="lang-toggle">
+              <button className={lang === 'en' ? 'active' : ''} onClick={() => setLang('en')}>EN</button>
+              <button className={lang === 'pt' ? 'active' : ''} onClick={() => setLang('pt')}>PT</button>
+            </div>
+            <a href="#contact" className="btn btn-primary">{c.talk} <ArrowRight size={16} /></a>
+          </div>
+        </div>
+      </header>
+
+      {/* HERO */}
+      <section className="hero">
+        <div className="container">
+          <div className="hero-content">
+            <span className="hero-eyebrow">{c.eyebrow}</span>
+            <h1>{c.heroTitle}<span className="accent">{c.heroAccent}</span></h1>
+            <p>{c.heroText}</p>
+            <div className="hero-cta">
+              <a href="#services" className="btn btn-primary">{c.ourServices} <ArrowRight size={16} /></a>
+              <a href="#contact" className="btn btn-outline">{c.getInTouch}</a>
+            </div>
+            <div className="trust-badges">
+              <div className="trust-badge"><Target /><span>{c.trust[0]}</span></div>
+              <div className="trust-badge"><Users /><span>{c.trust[1]}</span></div>
+              <div className="trust-badge"><ShieldCheck /><span>{c.trust[2]}</span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SERVICES */}
+      <section id="services" className="section">
+        <div className="container">
+          <div className="section-header">
+            <span className="section-eyebrow">{c.servicesEyebrow}</span>
+            <h2>{c.servicesTitle}</h2>
+            <p>{c.servicesText}</p>
+          </div>
+          <div className="services-grid">
+            {c.services.map((s, i) => (
+              <article className="service-card" key={s.title}>
+                <div className="card-img"><img src={serviceImages[i]} alt={s.title} loading="lazy" /></div>
+                <div className="card-body">
+                  <h3>{s.title}</h3>
+                  <p>{s.desc}</p>
+                  <a href="#contact" className="card-link">Learn more <ArrowRight size={14} /></a>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ABOUT + WHY */}
+      <section id="about" className="section section-alt">
+        <div className="container">
+          <div className="about-grid">
+            <div className="about-text">
+              <span className="section-eyebrow" style={{ color: 'var(--blue-bright)' }}>{c.aboutEyebrow}</span>
+              <h2>{c.aboutTitle}</h2>
+              <p>{c.aboutText}</p>
+              <div><a href="#contact" className="btn btn-primary">{c.learnMore} <ArrowRight size={16} /></a></div>
+            </div>
+            <div className="about-img" role="img" aria-label="ASLCOMPANY office" />
+          </div>
+
+          <div className="why-panel" style={{ borderRadius: '12px', marginTop: '24px' }}>
+            <span className="section-eyebrow">{c.whyEyebrow}</span>
+            <div className="why-list">
+              {c.why.map((w, i) => {
+                const Icon = whyIcons[i];
+                return (
+                  <div className="why-item" key={w.title}>
+                    <Icon />
+                    <h4>{w.title}</h4>
+                    <p>{w.desc}</p>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CONTACT */}
+      <section id="contact" className="section">
+        <div className="container contact-grid">
+          <div className="contact-form">
+            <span className="section-eyebrow">{c.contactEyebrow}</span>
+            <h2>{c.contactTitle}</h2>
+            <p>{c.contactText}</p>
+            <form onSubmit={(e) => e.preventDefault()}>
+              <div className="form-row">
+                <div className="form-field"><label>{c.fullName}</label><input required placeholder="Your name" /></div>
+                <div className="form-field"><label>{c.email}</label><input required type="email" placeholder="yourname@company.com" /></div>
+              </div>
+              <div className="form-row">
+                <div className="form-field full">
+                  <label>{c.interest}</label>
+                  <select required defaultValue="">
+                    <option value="" disabled>{c.selectService}</option>
+                    {c.services.map((s) => <option key={s.title}>{s.title}</option>)}
+                  </select>
+                </div>
+              </div>
+              <div className="form-row">
+                <div className="form-field full">
+                  <label>{c.message}</label>
+                  <textarea required placeholder="Tell us about your project..." />
+                </div>
+              </div>
+              <button type="submit" className="btn btn-primary">{c.send} <ArrowRight size={16} /></button>
+            </form>
+          </div>
+
+          <div className="contact-visual">
+            <div className="contact-info-card">
+              <div className="info-row"><MapPin /><span>{c.location}<br /><small style={{ opacity: 0.7 }}>{c.serving}</small></span></div>
+              <div className="info-row"><Mail /><span>www.aslcompanygroup.com</span></div>
+              <div className="social-row">
+                <a href="#" aria-label="LinkedIn"><Linkedin size={16} /></a>
+                <a href="#" aria-label="YouTube"><Youtube size={16} /></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FOOTER */}
+      <footer className="site-footer">
+        <div className="container footer-inner">
+          <div className="logo" style={{ color: 'white' }}>
+            <img src="/asl-logo.png" alt="ASLCOMPANY" />
+            <span>ASLCOMPANY</span>
+          </div>
+          <nav className="footer-nav">
+            {c.nav.map((n, i) => <a key={n} href={['#', '#services', '#about', '#about', '#contact'][i]}>{n}</a>)}
+          </nav>
+          <div className="footer-copy">© 2026 ASLCOMPANY Group. All rights reserved.</div>
+        </div>
+      </footer>
+    </>
+  );
+}
